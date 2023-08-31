@@ -1,23 +1,13 @@
 import { styled } from "styled-components";
 
-export const PostStyled = styled.section`
-padding: 1em;
-
-`
-
-export const CommentsHolder = styled.section`
-
-`
-
-
-export const CommentWriteAreaStyled = styled.div`
+export const PostWriteAreaStyled = styled.section`
+    padding: 1em 1em 0 1em;
     display: flex;
     flex-direction: column;
-    margin-bottom: 1em;
     
 `
 
-export const CommentAreaStyled = styled.textarea`
+export const TextAreaStyled = styled.textarea`
 min-height: 80px;
 overflow-x: scroll;
 background-color: #FBFBFB;
@@ -30,7 +20,9 @@ color: #6F6F6F;
 font-family: Helvetica;
 font-size: 1em;
 font-style: normal;
-font-weight: 400;
+font-weight: 500;
 line-height: normal;
 resize: none;
+margin-bottom: 1em;
 `
+

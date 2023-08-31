@@ -1,15 +1,15 @@
-export const goToLogin = ()=>{
+export const goToLogin = (navigate)=>{
     navigate("/login")
 }
 
-export const goToSignUp = ()=>{
+export const goToSignUp = (navigate)=>{
     navigate("/signup")
 }
 
-export const goToHome = () =>{
+export const goToHome = (navigate) =>{
     navigate("/")
 }
 
-export const goToPost = ({id})=>{
+export const goToPost = (navigate, id)=>{
     navigate(`/post/${id}`)
 }
