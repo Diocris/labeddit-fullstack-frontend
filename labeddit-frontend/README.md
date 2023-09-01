@@ -49,7 +49,7 @@ npm run start
 </br>
 <li>
     <ul><h3>Feed page</h3>
-        <p>Used POST and GET methods.</p>
+        <p>Used POST, GET and PUT (server-side perform) methods.</p>
         <li>Users can make a new post.</li>
         <li>Users can view all posts from here.</li>
         <li>Users can interact with the posts by liking or disliking them. They can also access a single post page to view its comments.</li>
@@ -61,7 +61,7 @@ npm run start
 </br>
 <li>
     <ul><h3>Post page</h3>
-        <p>Used POST and GET methods.</p>
+        <p>Used POST, GET and PUT (server-side perform) methods.</p>
         <li>Users can view the post itself and also it's comments.</li>
         <li>Users can comment the post.</li>
         <li>Users can interact with the comments or the post itself leaving a like or dislike.</li>
