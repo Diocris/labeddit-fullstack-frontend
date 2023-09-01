@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { BASE_API_POSTS } from "../../Constants/constants"
 import { useContext, useEffect, useState } from "react"
 import PostCard from "../../Components/Shared/PostCard/PostCard"
@@ -15,7 +15,7 @@ import ErrorMessagePrint from "../../Components/Shared/ErrorMessage/ErrorMessage
 export default function Post() {
     
     const {refresh, setRefresh} = useContext(AppContext)
-    
+    const navigate = useNavigate()
     const token = JSON.parse(localStorage.getItem("token"))
     const headers = {
         Authorization: token
@@ -70,7 +70,10 @@ export default function Post() {
             setNewComment("")
             setRefresh(prevRefresh => !prevRefresh);
         })
-        .catch((error)=>{
+        .catch((error)=>{        
+            if(error.response.data){
+            goToLogin(navigate)
+        }
             console.log(error.response)
         })
     }else{

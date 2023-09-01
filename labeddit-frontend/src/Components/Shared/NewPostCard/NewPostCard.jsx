@@ -7,12 +7,14 @@ import {BASE_API_POSTS} from "../../../Constants/constants"
 import ErrorMessagePrint from "../ErrorMessage/ErrorMessagePrint";
 import SuccessMessage from "../SuccessMessage/SuccessMessage";
 import { AppContext } from "../../../Context/GlobalContext";
+import { useNavigate } from "react-router-dom";
+import { goToLogin } from "../../../Routes/coordinator";
 
 export default function NewPostArea() {
     const {setRefresh} = useContext(AppContext)
     const [errorPrint, setErrorPrint] = useState("")
     const [successPrint, setSuccessPrint] = useState("")
-
+    const navigate = useNavigate()
     const token = JSON.parse(localStorage.getItem("token"))
     const headers = {
         Authorization: token
@@ -41,6 +43,9 @@ export default function NewPostArea() {
             let print
             if(error.response.data[0].message){
                 print = "You can't make an empty post."
+            }
+            if(error.response.data){
+                goToLogin(navigate)
             }
             setErrorPrint(print || error.response.data)
             setTimeout(() => {
