@@ -38,7 +38,11 @@ export default function NewPostArea() {
             setRefresh(prevRefresh => !prevRefresh);
          })
          .catch((error)=>{
-            setErrorPrint(error.response.data[0].message || error.response.data)
+            let print
+            if(error.response.data[0].message){
+                print = "You can't make an empty post."
+            }
+            setErrorPrint(print || error.response.data)
             setTimeout(() => {
                 setErrorPrint("")
             }, 2000);
@@ -50,7 +54,7 @@ export default function NewPostArea() {
     return(<>
     <PostWriteAreaStyled>
         
-        <TextAreaStyled type={"text-area"} name="comment" placeholder={"Share your toughts with your friends."} alt={"Comment text-area."} value={content} onChange={fillContent}/>
+        <TextAreaStyled type={"text-area"} name="comment" placeholder={"Share your thoughts with your friends."} alt={"Comment text-area."} value={content} onChange={fillContent}/>
         
         {errorPrint !== "" ? <ErrorMessagePrint text={errorPrint}/> : successPrint !== "" && <SuccessMessage text={successPrint}/>}
     

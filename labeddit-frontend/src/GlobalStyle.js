@@ -16,6 +16,7 @@ padding: 0px;
 margin: 0px;
 box-sizing: border-box;
 min-width: 360px;
+font-family: Arial, Helvetica, sans-serif;
 }
 
 body{

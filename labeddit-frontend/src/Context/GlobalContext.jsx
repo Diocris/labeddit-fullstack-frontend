@@ -10,7 +10,6 @@ function AppProvider({ children }) {
   
   const [refresh, setRefresh] = useState(false)
 
-  const [user, setUser] = useState("")
   
   useEffect(()=>{
     setTimeout(() => {
@@ -34,7 +33,7 @@ function AppProvider({ children }) {
   
   return (
     <AppContext.Provider
-      value={{loggedIn, setLoggedIn, refresh, setRefresh, user }}
+      value={{loggedIn, setLoggedIn, refresh, setRefresh }}
     >
       {children}
     </AppContext.Provider>

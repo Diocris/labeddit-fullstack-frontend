@@ -1,6 +1,6 @@
 import { css, styled } from "styled-components";
 
-export const PostCardStyled = styled.div`
+export const PostCardStyled = styled.article`
 border: 1px solid #E0E0E0;
 padding: 0.5em;
 margin-bottom: 1em;

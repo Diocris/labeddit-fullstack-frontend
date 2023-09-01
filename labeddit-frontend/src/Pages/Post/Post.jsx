@@ -9,6 +9,8 @@ import Separator from "../../Components/Shared/Separator/Separator"
 import CommentCard from "../../Components/Shared/CommentCard/CommentCard"
 import { AppContext } from "../../Context/GlobalContext"
 import Loader from "../../Components/Shared/Loader/Loader"
+import ErrorMessagePrint from "../../Components/Shared/ErrorMessage/ErrorMessagePrint"
+
 
 export default function Post() {
     
@@ -21,8 +23,10 @@ export default function Post() {
     const { id } = useParams()
 
     const [post, setPost] = useState()
+    
     const [comments, setComments] = useState([])  
     
+    const [errorPrint, setErrorPrint] = useState("")
     //
     //-- Get Posts
     //
@@ -60,6 +64,7 @@ export default function Post() {
     }
     
     const commentPost = ()=>{
+        if(body.comment.length > 1){
         axios.post(BASE_API_POSTS+"/"+id+"/comments", body, {headers})
         .then((response)=>{      
             setNewComment("")
@@ -68,14 +73,19 @@ export default function Post() {
         .catch((error)=>{
             console.log(error.response)
         })
-  
+    }else{
+        setErrorPrint("You can't make an empty post.")
+        setTimeout(() => {
+            setErrorPrint("")
+        }, 3000);
+    }
     }
 
     //
     //-- Print post
     //
     const commentsPrint = comments.map((comment)=>{
-        return(<>
+        return(
         <CommentCard
         key={comment.commentId}
         postId={id}
@@ -84,7 +94,7 @@ export default function Post() {
         commentContent={comment.commentContent}
          commentLikes={comment.commentLikes}
         />
-        </>)
+        )
     })
     
     //
@@ -103,11 +113,11 @@ export default function Post() {
             comments={post.postComments.length}
 
         />}
-        
+       
         <CommentWriteAreaStyled>
             <CommentAreaStyled type={"text-area"} name="comment" placeholder={"Comment your friend's post.."} alt={"Comment text-area."} value={newComment} onChange={fillComment}/>
         </CommentWriteAreaStyled>
-        
+        {errorPrint && <ErrorMessagePrint text={errorPrint}/>}
         <Button text={'Comment'} $variant="$primary" event={commentPost} />
         
         <Separator />

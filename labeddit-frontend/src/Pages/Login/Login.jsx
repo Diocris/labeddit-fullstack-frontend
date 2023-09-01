@@ -65,8 +65,6 @@ export default function Login() {
 
                     const token = result.token
 
-                    console.log(token)
-
                     const tokenString = JSON.stringify(token)
                     localStorage.setItem('token', tokenString)
 
